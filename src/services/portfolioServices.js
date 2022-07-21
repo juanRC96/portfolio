@@ -9,3 +9,8 @@ export async function getAllStudies(){
     const querySnapshot = await firebase.firestore().collection("studies").get()
     return querySnapshot.docs
 };
+
+export async function getAbout(){
+    const querySnapshot = await firebase.firestore().collection("about").get()
+    return querySnapshot.docs
+};

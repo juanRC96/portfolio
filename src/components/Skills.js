@@ -1,14 +1,14 @@
 import { useEffect, useState } from "react";
+import { Spinner } from "react-bootstrap";
 import { getAllSkills, getAllStudies } from "../services/portfolioServices";
 
 function Skills(){
 
     const[skills,setSkills] = useState([])
     const[studies,setStudies] = useState([])
-    const[loading,setLoading] = useState(false)
+    const[loading,setLoading] = useState(true)
 
     useEffect(()=>{
-        setLoading(true)
         const request = async() =>{
             const allskills = await getAllSkills();
             const allStudies = await getAllStudies();
@@ -26,17 +26,21 @@ function Skills(){
             </div>
             {
                 loading &&
-                <div>
-                    
+                <div className="skills-text">
+                    <Spinner animation="border" role="status" variant="light"/>
                 </div>
             }
-            <div className="skills-text">
+            {
+                !loading &&
+                <div className="skills-text">
                 <h3>Studies</h3>
                 {studies.map((e)=><p key={e.id}>{e.data().detalle}</p>)}
                 <h3>Skills</h3>
                 {skills.map((s)=><p key={s.id}>{s.data().detalle}</p>)}
                 <p></p>
             </div>
+            }
+
         </div>
     )
 }
