@@ -152,14 +152,14 @@ main{
 }
 
 
-.projects{
+.skills{
   width: 100%;
   display: inline-block;
   height: 300px;
   font-size: 0px;
 }
 
-.projects-text{
+.skills-text{
   display: inline-block; 
   width: 50%;
   vertical-align: top;
@@ -168,25 +168,25 @@ main{
   font-size: 20px;
 }
 
-.projects-image{
+.skills-image{
   width: 50%;
   height: 300px;
   display: inline-block;
 }
 
-.projects-image img{
+.skills-image img{
   width: 100%;
   height: 100%;
   object-fit: cover;
 }
 
-.projects-text p{
+.skills-text p{
   padding-left: 15px;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
 }
 
-.projects-text h3{
+.skills-text h3{
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   padding-left: 15px;
   color: white;

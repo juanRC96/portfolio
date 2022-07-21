@@ -1,12 +1,11 @@
+
 function About(){
 
     return(
         <div className="about-me">
             <div className="about-me-text">
                 <h3>About me</h3>
-                <p>Systems analyst - UTN FRRo 2024</p>
-                <p>Full Stack Developer Jr - ArgentinaPrograma 2023</p>
-                <p>Professional Full Stack Developer - UTN WebLearning Center 2022</p>
+                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
             </div>
             <div className="about-me-image">
                 <img src="images/program_img.jpg" alt=""/>
