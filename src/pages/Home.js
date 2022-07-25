@@ -1,5 +1,5 @@
+
 import About from "../components/About";
-import Contact from "../components/Contact";
 import Profile from "../components/Profile";
 import Skills from "../components/Skills";
 
@@ -19,10 +19,7 @@ function Home(){
                 <Skills/>
             </section>
         </main>
-
-        <footer>
-            <Contact/>
-        </footer>
+        
     </div>
     )
 

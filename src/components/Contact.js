@@ -1,7 +1,9 @@
 import { Nav } from "react-bootstrap";
+import { Link } from "react-router-dom";
 
 function Contact(){
     return(
+        <>
         <div className="contacto">
             <Nav >
                 <ul>
@@ -12,6 +14,8 @@ function Contact(){
                 </ul>
             </Nav>
         </div>
+        <Link to="/login">Administrar</Link>
+        </>
     )
 }
 export default Contact;
