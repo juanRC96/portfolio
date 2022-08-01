@@ -2,25 +2,36 @@
 import About from "../components/About";
 import Profile from "../components/Profile";
 import Skills from "../components/Skills";
+import Studies from "../components/Studies";
+import AuthContext from "../context/AuthContext";
 
 function Home(){
     return(
-    <div className="home">
+        <AuthContext.Consumer>
+            {
+                context => (
+                    <div className="home">
 
-        <header>
-            <Profile/>
-        </header>
+                    <header>
+                        <Profile/>
+                    </header>
+            
+                    <main>
+                        <section id="about">
+                            <About/>
+                        </section>
+                        <section id="skills">
+                            <Skills/>
+                        </section>
+                        <section id="studies">
+                            <Studies/>
+                        </section>
+                    </main>
+                </div>
+                )
+            }
 
-        <main>
-            <section id="about">
-                <About/>
-            </section>
-            <section id="skills">
-                <Skills/>
-            </section>
-        </main>
-        
-    </div>
+    </AuthContext.Consumer>
     )
 
 }

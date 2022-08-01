@@ -2,19 +2,18 @@ import { useEffect, useState } from "react";
 import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
-import { getSkills } from "../services/portfolioServices";
+import { getStudies } from "../services/portfolioServices";
 
-function Skills(){
-
-    const[skills,setSkills] = useState([])
+function Studies(){
+    const[studies,setStudies] = useState([])
     const[loading,setLoading] = useState(true)
     const[error,setError] = useState(undefined)
 
     useEffect(()=>{
         const request = async() =>{
             try{
-                const allskills = await getSkills();
-                setSkills(allskills);
+                const allStudies = await getStudies();
+                setStudies(allStudies);
                 setLoading(false);
             }catch(e){
                 console.log(e);
@@ -31,9 +30,6 @@ function Skills(){
             {
                 context => (
                     <div className="skills">
-                    <div className="skills-image">
-                        <img src="images/program_img1.jpg" alt=""/>
-                    </div>
                     {
                         loading &&
                         <div className="skills-text">
@@ -43,11 +39,11 @@ function Skills(){
                     {
                         !loading && !error &&
                         <div className="skills-text">
-                        <h3>Skills</h3>
-                        {skills.map((s)=><p key={s.id}>{s.data().detalle}</p>)}
+                        <h3>Studies</h3>
+                        {studies.map((e)=><p key={e.id}>{e.data().detalle}</p>)}
                         {
                             context.userLogin &&
-                            <Button as={Link} to="/skillsmodif" >Modificar</Button>
+                            <Button as={Link} to="/studiesmodif" >Modificar</Button>
                         }
                     </div>
                     }
@@ -57,11 +53,14 @@ function Skills(){
                             <h4>Ocurrió un error</h4>
                         </div>
                     }
+                    <div className="skills-image">
+                        <img src="images/program_img2.jpg" alt=""/>
+                    </div>
                 </div>
                 )
             }
         </AuthContext.Consumer>
     )
 }
-export default Skills;
+export default Studies;
 

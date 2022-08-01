@@ -1,18 +1,20 @@
-import { useState } from "react";
+import { useContext, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import firebase from "../config/firebase";
+import AuthContext from "../context/AuthContext";
 
 function Login(){
 
-    const [showPassword,setShowPassword] = useState(false)
     const [form,setForm] = useState({email:"",password:""})
-    const [success,setSuccess] = useState(false)
+    const context = useContext(AuthContext)
 
     const handleClick = async(event) =>{
         event.preventDefault();
         try{
-            await firebase.auth().signInWithEmailAndPassword(form.email,form.password);
-            alert("sesion iniciada")
+            const user = await firebase.auth().signInWithEmailAndPassword(form.email,form.password);
+            if(user){
+              context.loginUser(user)
+          }
         }catch(error){
             console.log(error);
             alert("error")
