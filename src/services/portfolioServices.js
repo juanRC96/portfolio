@@ -26,3 +26,8 @@ export async function updateSkills(id,data){
 export async function addSkills(data){
     return await firebase.firestore().collection("skills").add(data)
 }
+
+export async function deleteSkills(id){
+    return await firebase.firestore().doc("skills/"+id).delete()
+    
+}

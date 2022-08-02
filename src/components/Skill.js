@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { updateSkills } from "../services/portfolioServices";
+import { deleteSkills, updateSkills } from "../services/portfolioServices";
 
 function Skill(props){
 
@@ -22,14 +22,19 @@ function Skill(props){
   
     const onSubmit = async (data) => {
       try {
-        updateSkills(nombre[0], data);
-        console.log(data)
+        await updateSkills(nombre[0], data);
+        props.setRefresh((old) => old + 1);
         setTimeout(()=>{
       },1000)
       } catch (error) {
         console.log(error);
       }
     };
+
+    const deleteSkill = async() => {
+      props.setRefresh((old) => old + 1);
+      await deleteSkills(props.nombre)
+    }
 
 
 return(
@@ -43,7 +48,8 @@ return(
     />
     {errors.cuerpo && <span>El campo es obligatorio</span>}
   </Form.Group>
-  <Button variant="primary" type="submit">Submit</Button>
+  <Button variant="primary" type="submit">Modificar</Button>
+  <Button variant="danger" onClick={deleteSkill}>Eliminar</Button>
   </Form>
 )
 }

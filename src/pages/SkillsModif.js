@@ -8,8 +8,7 @@ export default function SkillsModif(){
 
     const {register,handleSubmit,setValue,formState: { errors }} = useForm();
     const [skills,setSkills] = useState([])
-    const id = useState("")
-    const [add,setAdd] = useState(false)
+    const [refresh,setRefresh] = useState(0)
 
     useEffect(()=>{
         const request = async() =>{
@@ -22,12 +21,13 @@ export default function SkillsModif(){
             }
         };
         request();
-    },[])
+    },[refresh])
 
     const onSubmit = async (data) => {
         try {
           console.log(data)
           addSkills(data);
+          setRefresh((old) => old + 1);
           setTimeout(()=>{
         },1000)
         } catch (error) {
@@ -35,22 +35,14 @@ export default function SkillsModif(){
         }
       };
 
-      const addSkill = () => {
-        setAdd(true)
-      }
-
     return(
     <>
     <h3 style={{color:"white"}}>Skills</h3>
-    {skills.map((s)=><Skill key={s.id} nombre={s.id} texto={s.data().detalle}/>)}
+    {skills.map((s)=><Skill key={s.id} nombre={s.id} texto={s.data().detalle} setRefresh={setRefresh}/>)}
 
-    <Button onClick={addSkill}>Agregar skill</Button>
-
-    {
-      add &&
       <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
       <Form.Group>
-      <Form.Label style={{color:"white"}}><h5>Skill</h5></Form.Label>
+      <Form.Label style={{color:"white"}}><h2>Agregar skill</h2></Form.Label>
       <Form.Control
         type="text"
         name="detalle"
@@ -60,7 +52,6 @@ export default function SkillsModif(){
     </Form.Group>
     <Button variant="primary" type="submit">Submit</Button>
     </Form>
-    }
 
     </>
     )
