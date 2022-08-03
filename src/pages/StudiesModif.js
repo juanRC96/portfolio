@@ -1,35 +1,33 @@
 import { Button, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
-import { getAbout, updateAbout } from "../services/portfolioServices";
+import { addStudies, getStudies } from "../services/portfolioServices";
+import Study from "../components/Study";
 
 export default function StudiesModif(){
 
     const {register,handleSubmit,setValue,formState: { errors }} = useForm();
-    const [id,setId] = useState("")
-    const [contador,setContador] = useState(0)
+    const [skills,setSkills] = useState([])
+    const [refresh,setRefresh] = useState(0)
 
     useEffect(()=>{
         const request = async() =>{
             try{
-                const about = await getAbout();
-                about.forEach((a)=>{
-                    setValue("texto",a.data().texto);
-                    setId(a.id);
-                    setContador(a.data().texto.length)
-            })
-            console.log("usefect")
+                const sk = await getStudies();
+                setSkills(sk);
             }
             catch(e){
                 console.log(e);
             }
         };
         request();
-    },[setValue])
+    },[refresh])
 
     const onSubmit = async (data) => {
         try {
-          updateAbout(id, data);
+          console.log(data)
+          addStudies(data);
+          setRefresh((old) => old + 1);
           setTimeout(()=>{
         },1000)
         } catch (error) {
@@ -37,37 +35,24 @@ export default function StudiesModif(){
         }
       };
 
-      const recalculate = (e) => {
-        console.log('event value:', e);
-        setContador(e.target.value.length);
-    };
-
     return(
-    <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
+    <div style={{backgroundColor:"white",padding:"2rem",margin:"2rem",borderRadius:"10px"}}>
+    <h2 style={{}}>Studies</h2>
+    {skills.map((s)=><Study key={s.id} nombre={s.id} texto={s.data().detalle} setRefresh={setRefresh}/>)}
 
-    <Form.Group>
-      <Form.Label style={{color:"white"}}><h3>About</h3></Form.Label>
+      <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
+      <Form.Group>
+      <Form.Label style={{}}><h4>Add studies</h4></Form.Label>
       <Form.Control
-      {...register("texto", { required: true })}
-        as="textarea"
         type="text"
-        name="texto"
-        style={{height:"10rem",marginBottom:"2rem"}}
-        onChange={recalculate}
+        name="detalle"
+        {...register("detalle", { required: true })}
       />
       {errors.cuerpo && <span>El campo es obligatorio</span>}
     </Form.Group>
-    {
-        contador<=628 &&
-        <>
-        <p style={{fontSize:"20px",color:"white"}}>{contador}/628</p>
-        <Button variant="primary" type="submit">Submit</Button>
-        </>
-    }
-        {
-        contador>628 &&
-        <p style={{fontSize:"20px",color:"red"}}>{contador}/628</p>
-    } 
+    <Button variant="primary" type="submit">Submit</Button>
     </Form>
+
+    </div>
     )
 }

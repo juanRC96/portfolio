@@ -23,11 +23,22 @@ export async function updateSkills(id,data){
     return await firebase.firestore().doc("skills/"+id).set(data)
 }
 
+export async function updateStudies(id,data){
+    return await firebase.firestore().doc("studies/"+id).set(data)
+}
+
 export async function addSkills(data){
     return await firebase.firestore().collection("skills").add(data)
 }
 
+export async function addStudies(data){
+    return await firebase.firestore().collection("studies").add(data)
+}
+
 export async function deleteSkills(id){
-    return await firebase.firestore().doc("skills/"+id).delete()
-    
+    return await firebase.firestore().doc("skills/"+id).delete() 
+}
+
+export async function deleteStudy(id){
+    return await firebase.firestore().doc("studies/"+id).delete() 
 }

@@ -36,13 +36,13 @@ export default function SkillsModif(){
       };
 
     return(
-    <>
-    <h3 style={{color:"white"}}>Skills</h3>
+    <div style={{backgroundColor:"white",padding:"2rem",margin:"2rem",borderRadius:"10px"}}>
+    <h2 style={{}}>Skills</h2>
     {skills.map((s)=><Skill key={s.id} nombre={s.id} texto={s.data().detalle} setRefresh={setRefresh}/>)}
 
       <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
       <Form.Group>
-      <Form.Label style={{color:"white"}}><h2>Agregar skill</h2></Form.Label>
+      <Form.Label style={{}}><h4>Agregar skill</h4></Form.Label>
       <Form.Control
         type="text"
         name="detalle"
@@ -53,6 +53,6 @@ export default function SkillsModif(){
     <Button variant="primary" type="submit">Submit</Button>
     </Form>
 
-    </>
+    </div>
     )
 }

@@ -1,9 +1,9 @@
 import { useEffect, useState } from "react";
 import { Button, Form } from "react-bootstrap";
 import { useForm } from "react-hook-form";
-import { deleteSkills, updateSkills } from "../services/portfolioServices";
+import { deleteStudy, updateStudies } from "../services/portfolioServices";
 
-function Skill(props){
+function Study(props){
 
     const {register,handleSubmit,setValue,formState: { errors }} = useForm();
     const nombre = useState(props.nombre)
@@ -22,7 +22,7 @@ function Skill(props){
   
     const onSubmit = async (data) => {
       try {
-        await updateSkills(nombre[0], data);
+        await updateStudies(nombre[0], data);
         props.setRefresh((old) => old + 1);
         setTimeout(()=>{
       },1000)
@@ -31,16 +31,16 @@ function Skill(props){
       }
     };
 
-    const deleteSkill = async() => {
+    const deleteStudies = async() => {
       props.setRefresh((old) => old + 1);
-      await deleteSkills(props.nombre)
+      await deleteStudy(props.nombre)
     }
 
 
 return(
     <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto",marginUp:"1rem",marginBottom:"1rem"}}>
     <Form.Group>
-    <Form.Label style={{}}><h5>Skill</h5></Form.Label>
+    <Form.Label style={{}}><h5>Study</h5></Form.Label>
     <Form.Control
       type="text"
       name="detalle"
@@ -49,9 +49,9 @@ return(
     {errors.cuerpo && <span>El campo es obligatorio</span>}
   </Form.Group>
   <Button variant="primary" type="submit">Modificar</Button>
-  <Button variant="danger" onClick={deleteSkill}>Eliminar</Button>
+  <Button variant="danger" onClick={deleteStudies}>Eliminar</Button>
   </Form>
 )
 }
 
-export default Skill;
+export default Study;
