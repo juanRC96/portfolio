@@ -36,23 +36,25 @@ export default function SkillsModif(){
       };
 
     return(
+      <>
     <div style={{backgroundColor:"white",padding:"2rem",margin:"2rem",borderRadius:"10px"}}>
-    <h2 style={{}}>Skills</h2>
-    {skills.map((s)=><Skill key={s.id} nombre={s.id} texto={s.data().detalle} setRefresh={setRefresh}/>)}
-
-      <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
-      <Form.Group>
+      <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{marginLeft:"auto",marginRight:"auto",marginUp:"1rem",marginBottom:"1rem",display:"inline-block",width:"100%"}}>
+      <Form.Group style={{width:"87%",display:"inline-block"}}>
       <Form.Label style={{}}><h4>Agregar skill</h4></Form.Label>
       <Form.Control
         type="text"
         name="detalle"
+        style={{width:"100%",marginRight:"1rem",display:"inline-block"}}
         {...register("detalle", { required: true })}
       />
       {errors.cuerpo && <span>El campo es obligatorio</span>}
     </Form.Group>
-    <Button variant="primary" type="submit">Submit</Button>
+    <Button variant="primary" type="submit">Agregar</Button>
     </Form>
-
     </div>
+    <div style={{backgroundColor:"white",padding:"2rem",margin:"2rem",borderRadius:"10px"}}>
+    {skills.map((s)=><Skill key={s.id} nombre={s.id} texto={s.data().detalle} setRefresh={setRefresh}/>)}
+    </div>
+    </>
     )
 }

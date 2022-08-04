@@ -38,18 +38,18 @@ function Skill(props){
 
 
 return(
-    <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto",marginUp:"1rem",marginBottom:"1rem"}}>
-    <Form.Group>
-    <Form.Label style={{}}><h5>Skill</h5></Form.Label>
+    <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{marginLeft:"auto",marginRight:"auto",marginUp:"1rem",marginBottom:"1rem",display:"inline-block",width:"100%"}}>
+    <Form.Group style={{width:"87%",display:"inline-block"}}>
     <Form.Control
       type="text"
       name="detalle"
+      style={{width:"100%",marginRight:"1rem",display:"inline-block"}}
       {...register("detalle", { required: true })}
     />
     {errors.cuerpo && <span>El campo es obligatorio</span>}
   </Form.Group>
-  <Button variant="primary" type="submit">Modificar</Button>
-  <Button variant="danger" onClick={deleteSkill}>Eliminar</Button>
+  <Button variant="primary" type="submit" style={{display:"inline-block"}}>Modificar</Button>
+  <Button variant="danger" onClick={deleteSkill} style={{display:"inline-block"}}>Eliminar</Button>
   </Form>
 )
 }

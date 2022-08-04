@@ -38,12 +38,12 @@ function Study(props){
 
 
 return(
-    <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto",marginUp:"1rem",marginBottom:"1rem"}}>
-    <Form.Group>
-    <Form.Label style={{}}><h5>Study</h5></Form.Label>
+    <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"100%",marginRight:"auto",marginLeft:"auto",marginUp:"1rem",marginBottom:"1rem"}}>
+    <Form.Group style={{width:"86%",display:"inline-block"}}>
     <Form.Control
       type="text"
       name="detalle"
+      style={{width:"100%",marginRight:"1rem",display:"inline-block"}}
       {...register("detalle", { required: true })}
     />
     {errors.cuerpo && <span>El campo es obligatorio</span>}
