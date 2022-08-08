@@ -2,6 +2,8 @@ import { Button, Form } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { getAbout, updateAbout } from "../services/portfolioServices";
+import AuthProvider from "../context/AuthProvider";
+import AuthContext from "../context/AuthContext";
 
 export default function AboutMeModif(){
 
@@ -43,31 +45,40 @@ export default function AboutMeModif(){
     };
 
     return(
-    <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
-
-    <Form.Group>
-      <Form.Label style={{color:"white"}}><h3>About</h3></Form.Label>
-      <Form.Control
-      {...register("texto", { required: true })}
-        as="textarea"
-        type="text"
-        name="texto"
-        style={{height:"10rem",marginBottom:"2rem"}}
-        onChange={recalculate}
-      />
-      {errors.cuerpo && <span>El campo es obligatorio</span>}
-    </Form.Group>
-    {
-        contador<=628 &&
-        <>
-        <p style={{fontSize:"20px",color:"white"}}>{contador}/628</p>
-        <Button variant="primary" type="submit">Submit</Button>
-        </>
-    }
+      <AuthContext.Consumer>
         {
-        contador>628 &&
-        <p style={{fontSize:"20px",color:"red"}}>{contador}/628</p>
-    } 
-    </Form>
+          context =>
+          (context.userLogin &&
+            <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"90%",marginRight:"auto",marginLeft:"auto"}}>
+
+            <Form.Group>
+              <Form.Label style={{color:"white"}}><h3>About</h3></Form.Label>
+              <Form.Control
+              {...register("texto", { required: true })}
+                as="textarea"
+                type="text"
+                name="texto"
+                style={{height:"10rem",marginBottom:"2rem"}}
+                onChange={recalculate}
+              />
+              {errors.cuerpo && <span>El campo es obligatorio</span>}
+            </Form.Group>
+            {
+                contador<=628 &&
+                <>
+                <p style={{fontSize:"20px",color:"white"}}>{contador}/628</p>
+                <Button variant="primary" type="submit">Submit</Button>
+                </>
+            }
+                {
+                contador>628 &&
+                <p style={{fontSize:"20px",color:"red"}}>{contador}/628</p>
+            } 
+            </Form>
+          )
+
+        }
+
+    </AuthContext.Consumer>
     )
 }

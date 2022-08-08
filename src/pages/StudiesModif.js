@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import { addStudies, getStudies } from "../services/portfolioServices";
 import Study from "../components/Study";
+import AuthContext from "../context/AuthContext";
 
 export default function StudiesModif(){
 
@@ -36,7 +37,10 @@ export default function StudiesModif(){
       };
 
     return(
-      <>
+      <AuthContext.Consumer>
+        {
+          context => (context.userLogin &&
+            <>
       <div style={{backgroundColor:"white",padding:"2rem",margin:"2rem",borderRadius:"10px"}}>
       <Form className="formulario" onSubmit={handleSubmit(onSubmit)} style={{width:"100%",marginRight:"auto",marginLeft:"auto",marginUp:"1rem",marginBottom:"1rem"}}>
       <Form.Group style={{width:"87%",display:"inline-block"}}>
@@ -56,5 +60,8 @@ export default function StudiesModif(){
     {skills.map((s)=><Study key={s.id} nombre={s.id} texto={s.data().detalle} setRefresh={setRefresh}/>)}
     </div>
     </>
+          )
+        }
+    </AuthContext.Consumer>
     )
 }
