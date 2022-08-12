@@ -3,6 +3,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { getStudies } from "../services/portfolioServices";
+import {motion} from "framer-motion";
 
 function Studies(){
     const[studies,setStudies] = useState([])
@@ -29,7 +30,7 @@ function Studies(){
         <AuthContext.Consumer>
             {
                 context => (
-                    <div className="skills">
+                    <motion.div className="skills" initial={{ opacity: 0,scale: 0}} animate={{opacity: 1,transition:{duration: 1},scale:1}} whileTap={{scale:1.05}}>
                     {
                         loading &&
                         <div className="skills-text">
@@ -56,7 +57,7 @@ function Studies(){
                     <div className="skills-image">
                         <img src="images/program_img2.jpg" alt=""/>
                     </div>
-                </div>
+                </motion.div>
                 )
             }
         </AuthContext.Consumer>

@@ -3,6 +3,7 @@ import { Button, Spinner } from "react-bootstrap";
 import AuthContext from "../context/AuthContext";
 import { getAbout } from "../services/portfolioServices";
 import { Link } from "react-router-dom";
+import {motion} from "framer-motion";
 
 function About(){
 
@@ -30,7 +31,7 @@ function About(){
         <AuthContext.Consumer>
             {
                 context => (
-                    <div className="about-me">
+                    <motion.div className="about-me" initial={{ opacity: 0,scale: 0}} animate={{opacity: 1,transition:{duration: 1},scale:1}} whileTap={{scale:1.05}}>
                     {
                         loading &&
                         <div className="about-me-text">
@@ -59,7 +60,7 @@ function About(){
                     <div className="about-me-image">
                         <img src="images/program_img.jpg" alt=""/>
                     </div>
-                </div>
+                </motion.div>
                 )
             }
         </AuthContext.Consumer>

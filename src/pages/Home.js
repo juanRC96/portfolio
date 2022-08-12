@@ -4,7 +4,6 @@ import Profile from "../components/Profile";
 import Skills from "../components/Skills";
 import Studies from "../components/Studies";
 import AuthContext from "../context/AuthContext";
-import {motion} from "framer-motion";
 
 function Home(){
 

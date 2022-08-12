@@ -3,6 +3,7 @@ import { Button, Spinner } from "react-bootstrap";
 import { Link } from "react-router-dom";
 import AuthContext from "../context/AuthContext";
 import { getSkills } from "../services/portfolioServices";
+import {motion} from "framer-motion";
 
 function Skills(){
 
@@ -30,7 +31,7 @@ function Skills(){
         <AuthContext.Consumer>
             {
                 context => (
-                    <div className="skills">
+                    <motion.div className="skills" initial={{ opacity: 0,scale: 0}} animate={{opacity: 1,transition:{duration: 1},scale:1}} whileTap={{scale:1.05}}>
                     <div className="skills-image">
                         <img src="images/program_img1.jpg" alt=""/>
                     </div>
@@ -57,7 +58,7 @@ function Skills(){
                             <h4>Ocurrió un error</h4>
                         </div>
                     }
-                </div>
+                </motion.div>
                 )
             }
         </AuthContext.Consumer>

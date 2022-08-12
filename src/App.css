@@ -19,7 +19,7 @@ header{
 }
 
 nav ul{
-  width: 103%;
+  width: 100%;
   position: fixed;
   z-index: 1;
   margin-left: -2rem;
@@ -84,8 +84,10 @@ nav ul li a{
   font-size: 60px;
   position: relative;
   top: 8rem;
+  right: 50%;
   font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
   color: white;
+  width: 50%;
 }
 
 .subtitulo{
@@ -110,7 +112,7 @@ main{
 
 .about-me{
   width: 100%;
-  height: 350px;
+  height: 25rem;
   margin: 0px;
   font-size: 0px;
 }
@@ -165,7 +167,7 @@ main{
 .skills{
   width: 100%;
   display: inline-block;
-  height: 350px;
+  height: 25rem;
   font-size: 0px;
 }
 
