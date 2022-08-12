@@ -1,15 +1,23 @@
+import {motion} from "framer-motion";
+
 function Profile(){
 
     return(
         <div className='perfil'> 
-            <div className="foto">
+            <motion.div className="foto" initial={{ opacity: 0,scale: 0,rotate:0 }} animate={{opacity: 1,transition:{duration: 1},rotate: 360,scale:1}} whileHover={{ scale: 1.1}} whileTap={{rotate:100}}>
                 <img src="images/profile.jpg" alt=""/>
-            </div>
+            </motion.div>
+
             <div className="titulo">
-                <h1>Juan Ignacio Cuesta</h1>
+                    <motion.h1 animate={{x:800,transition:{type:"spring",duration: 4}}} style={{color:"white",right:"49rem"}}>
+                        Juan Ignacio Cuesta
+                    </motion.h1>
+                
             </div>
             <div className="subtitulo">
-                <h2>Full Stack Developer</h2>
+                <motion.h2 animate={{y:200,transition:{type:"spring",duration: 2}}} style={{color:"white",position:"relative",top:"-12rem"}}>
+                    Full Stack Developer
+                </motion.h2>
             </div>
         </div>
     )

@@ -1,6 +1,7 @@
 import { Container } from "react-bootstrap";
 import AuthContext from "../context/AuthContext";
 import {Nav,Navbar,NavDropdown} from 'react-bootstrap';
+import { Link } from "react-scroll";
 
 function Navbarra(){
 
